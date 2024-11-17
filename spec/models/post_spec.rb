@@ -12,6 +12,15 @@ RSpec.describe Post, type: :model do
 
   describe 'Associations' do
     it 'belongs to a user' do
+      user = create(:user, name: "test")
+      post = create(:post, user: user)
+
+      expect(post.user.name).to eq("test")
+    end
+  end
+
+  describe 'Associations' do
+    it 'belongs to a user' do
       post = create(:post)  # create(:post) で自動的に関連付けられたuserが作成される
 
       expect(post.user).to be_present  # userが関連付けられていることを確認
